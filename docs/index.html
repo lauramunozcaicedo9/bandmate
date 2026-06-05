@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bandmate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: linear-gradient(180deg, #fff 0%, #fffaf6 100%);
+      --accent:#FF6B6B;
+      --muted:#6b7280;
+    }
+    *{box-sizing:border-box}
+    html,body{min-height: 100vh ;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+
+    /* Loader overlay */
+    .loader-wrap{position:fixed;inset:0;background:rgba(10,11,14,0.03);display:flex;align-items:center;justify-content:center;z-index:30;backdrop-filter: blur(25px);}
+    .loader{background:#fff;padding:28px 36px;border-radius:14px;box-shadow:0 8px 30px rgba(16,24,40,0.08);text-align:center;transform:translateY(0);animation:stay 1.2s ease-in-out 0s forwards}
+    .loader h1{font-family:'Playfair Display',serif;margin:0;font-size:20px;color:#0f172a}
+    .loader p{margin:8px 0 0;color:var(--muted)}
+
+    @keyframes liftOut {
+      0%{transform:translateY(0);opacity:1}
+      70%{transform:translateY(-60px);opacity:1}
+      100%{transform:translateY(-150vh);opacity:0}
+    }
+    @keyframes stay{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Main card */
+    .card{width:100%;max-width:980px;background:linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.92));border-radius:20px;padding:44px;box-shadow:0 20px 60px rgba(2,6,23,0.06);text-align:center}
+    .title{font-family:'Playfair Display',serif;font-size:28px;margin:0;color:#0b1220}
+    .subtitle{color:var(--muted);margin-top:8px}
+
+    .gallery{flex-wrap: wrap;display:flex;align-items:center;justify-content:center;margin:32px 0;}
+    .gallery img{
+      max-width: 100%;
+    }
+    .card-figure{width:260px;height:260px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:transparent}
+
+    /* make SVGs scale*/
+    svg{width:92%;height:92%;display:block}
+
+    .romantic{font-family:'Playfair Display',serif;font-size:20px;color:#0b1220;margin-top:6px}
+    .highlight{color:var(--accent);font-weight:700}
+
+    /* small note */
+    .note{margin-top:18px;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .gallery{gap:14px}
+      .card-figure{width:200px;height:200px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div id="loaderWrap" class="loader-wrap">
+    <div id="loader" class="loader" role="status" aria-live="polite">
+      <h1>Vamos a trabajar en un proyecto de nueve meses</h1>
+      <p>Preparando la sorpresa... 🎵🏐💛</p>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <main class="card" role="main" aria-live="polite">
+    <h2 class="title">Una noticia que hace nuestra vida más bonita</h2>
+    <p class="subtitle">Un nuevo compañero llega.</p>
+
+    <section class="gallery" aria-label="Tres escenas animadas">
+
+      
+      <img width="400" src="./1.png"/>
+      <img width="400" src="./2.png"/>
+      <img width="400" src="./3.png"/>
+
+      
+
+    </section>
+
+    <p>✨En la vida hemos compartido música,  hemos compartido risas, abrazos y sueños… 
+      Pero ahora, La vida nos permite compartir algo más y estoy muy agradecida de haberte encontrado en el camino. ✨ <br>
+
+      💛 Ya somos 5 en casa, nosotros, dos patitas peludas y el humanito.
+    </p>
+
+    <p class="romantic">Porfin!! — <span class="highlight">el compañero de música buena</span>, <span class="highlight">de volley</span> y <span class="highlight">de locha</span>. Te amo más cada día.</p>
+
+    
+  </main>
+
+  <script>
+    // Simulate loader then animate out
+    function reveal(){
+      const wrap = document.getElementById('loaderWrap');
+      const loader = document.getElementById('loader');
+      // after short delay, animate loader up and remove
+      setTimeout(()=>{
+        loader.style.animation = 'liftOut 900ms ease-in forwards';
+        // remove overlay after animation
+        setTimeout(()=>{
+          wrap.parentNode.removeChild(wrap);
+        },1000);
+      },3000);
+    }
+    // Start reveal
+    reveal();
+  </script>
+</body>
+</html>
